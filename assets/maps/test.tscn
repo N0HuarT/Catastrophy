@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://n82ep1pno2vo"]
+
+[ext_resource type="PackedScene" uid="uid://cnvtwcf2rw8on" path="res://assets/characters/player/player.tscn" id="1_lpkvm"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3ci5"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_lpkvm"]
+sky_material = SubResource("ProceduralSkyMaterial_f3ci5")
+
+[sub_resource type="Environment" id="Environment_2tsu8"]
+background_mode = 2
+sky = SubResource("Sky_lpkvm")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3ci5"]
+albedo_color = Color(0.20340833, 0.13905624, 0.75502396, 1)
+metallic = 1.0
+
+[node name="Test" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 44.56545, 0)
+light_energy = 1.309
+shadow_enabled = true
+directional_shadow_max_distance = 50.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2tsu8")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 55.59847, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+top_level = true
+calculate_tangents = false
+use_collision = true
+size = Vector3(100, 0.5, 100)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(0.9310749, 0, 0.36482805, 0, 1, 0, -0.36482805, 0, 0.9310749, -2.3788974, 0.7706233, -1.5734789)
+material = SubResource("StandardMaterial3D_f3ci5")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(0.9310749, 0, 3.6482806, 0, 10, 0, -0.36482805, 0, 9.310749, -2.3788974, 1.149467, 12.305843)
+material = SubResource("StandardMaterial3D_f3ci5")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0005288124, 1.8659341, 2.7914608)
+
+[node name="Player" parent="." instance=ExtResource("1_lpkvm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85458255, 0)

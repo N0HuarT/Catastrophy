@@ -1,0 +1,74 @@
+[gd_scene load_steps=13 format=3 uid="uid://cnvtwcf2rw8on"]
+
+[ext_resource type="Script" uid="uid://du8lvx1l7x2qj" path="res://scipts/player/stats/StatAffinity.gd" id="1_4wv5h"]
+[ext_resource type="Script" uid="uid://cixdpsrugmy2n" path="res://scipts/player/player.gd" id="1_nue64"]
+[ext_resource type="Script" uid="uid://di5c0kamrwbh" path="res://scipts/player/stats/StatCombat.gd" id="2_4yycj"]
+[ext_resource type="Script" uid="uid://ci3rkq0b1d7ly" path="res://scipts/player/stats/StatCharacter.gd" id="3_xiumy"]
+[ext_resource type="Script" uid="uid://cveil7062o28o" path="res://scipts/player/stats/StatResources.gd" id="4_gdcs1"]
+[ext_resource type="Script" uid="uid://cxjssfa8shm3y" path="res://scipts/player/control/ControlMovement.gd" id="5_xiumy"]
+[ext_resource type="Script" uid="uid://c2g1ac2mafvgw" path="res://scipts/player/control/ControlCamera.gd" id="7_flt3s"]
+[ext_resource type="Script" uid="uid://ck3tspuevwt34" path="res://scipts/player/control/ControlInput.gd" id="9_c81nm"]
+[ext_resource type="Script" uid="uid://b6oh6tdf0qqvm" path="res://scipts/player/control/StatusRules/RulesStatus.gd" id="10_6ff3h"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c81nm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_c81nm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nue64"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_nue64")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9500253, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_c81nm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("BoxMesh_c81nm")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+shape = SubResource("SphereShape3D_nue64")
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/SpringArm3D"]
+current = true
+
+[node name="Stats" type="Node" parent="."]
+
+[node name="StatAffinity" type="Node" parent="Stats"]
+script = ExtResource("1_4wv5h")
+aff_wrath = 42.0
+
+[node name="StatCombat" type="Node" parent="Stats"]
+script = ExtResource("2_4yycj")
+
+[node name="StatCharacter" type="Node" parent="Stats"]
+script = ExtResource("3_xiumy")
+
+[node name="StatResources" type="Node" parent="Stats"]
+script = ExtResource("4_gdcs1")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Control" type="Node" parent="."]
+
+[node name="Movement" type="Node" parent="Control"]
+script = ExtResource("5_xiumy")
+
+[node name="Camera" type="Node" parent="Control"]
+script = ExtResource("7_flt3s")
+
+[node name="Input" type="Node" parent="Control"]
+script = ExtResource("9_c81nm")
+
+[node name="Status" type="Node" parent="Control"]
+script = ExtResource("10_6ff3h")
+
+[node name="Utlity" type="Node" parent="Control"]
+
+[node name="Combat" type="Node" parent="Control"]
+
+[node name="Inventory" type="Node" parent="."]

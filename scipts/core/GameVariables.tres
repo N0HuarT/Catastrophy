@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="GameVariables" load_steps=2 format=3 uid="uid://cldrfr0dl6nvg"]
+
+[ext_resource type="Script" uid="uid://oyiqrhice3rp" path="res://scipts/core/GameVariables.gd" id="1_25gup"]
+
+[resource]
+script = ExtResource("1_25gup")
