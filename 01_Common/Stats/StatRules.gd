@@ -1,33 +1,25 @@
-#script/player/StatusRules
-extends Resource
+extends Node
 class_name RulesStatus
 
 
 func _init() -> void:
-	SignalBus.debug_print(SignalBus.Debug.STATS_RULES, "Loaded: StatRules")
+	#SignalBus.debug_print(SignalBus.Debug.STATS_RULES, "Loaded: StatRules")
 	run_Status_debug()
 
 #region Debug
 func run_Status_debug() -> void:
-	if not SignalBus: return
-	if SignalBus.debug_control_status:
-		print(GameGlobals.slow_diminish)
-		add_status(RulesStatus.STATUSES.SLOW, 0.5, 3.0)
-		print("Added 1 slow:", character_status)
-		add_status(RulesStatus.STATUSES.SLOW, 0.3, 3.0)
-		print("Added 2nd slow:", character_status)
-		add_status(RulesStatus.STATUSES.STUNNED, 1.0, 2.0)
-		print("Added stun:", character_status)
-		add_status(RulesStatus.STATUSES.STUNNED, 1.0, 5.0)
-		print("Refreshed stun:", character_status)
-		print("Slow multiplier:", get_slow_multiplier())
+	pass
+	#add_status(RulesStatus.STATUSES.SLOW, 0.5, 3.0)
+	#add_status(RulesStatus.STATUSES.SLOW, 0.3, 3.0)
+	#add_status(RulesStatus.STATUSES.STUNNED, 1.0, 2.0)
+	#add_status(RulesStatus.STATUSES.STUNNED, 1.0, 5.0)
 #endregion
 
 var character_status: Dictionary = {} # enum -> Array of {value, timer}
 enum STATUSES { STUNNED, ROOT, SLOW }
 
 func add_status(status_name: STATUSES, value := 0.5, duration := 3.0) -> void:
-	if SignalBus.debug_control_status: print(status_name,value,duration)
+	#SignalBus.debug_print(self,"test","test")
 	if status_name in [STATUSES.STUNNED, STATUSES.ROOT]:
 		# Non-stackable CC: only refresh
 		character_status[status_name] = [{"value": value, "timer": duration}]
@@ -52,7 +44,7 @@ func get_slow_multiplier() -> float:
 		return multiplier
 	return 1.0
 
-func _physics_process(delta: float) -> void:
+func tick(delta: float) -> void:
 	for status_name: int in character_status.keys():
 		var status_name_typed: int = status_name
 		var status_list: Array = character_status[status_name_typed]
@@ -60,3 +52,20 @@ func _physics_process(delta: float) -> void:
 			status_list[i]["timer"] -= delta
 			if status_list[i]["timer"] <= 0:
 				remove_status((status_name_typed), i)
+
+
+
+func is_stunned() -> bool:
+	return STATUSES.STUNNED in character_status
+
+func is_rooted() -> bool:
+	return STATUSES.ROOT in character_status
+
+func can_move() -> bool:
+	return not is_rooted() and not is_stunned()
+
+func can_look() -> bool:
+	return not is_stunned()
+
+func can_act() -> bool:
+	return not is_stunned()

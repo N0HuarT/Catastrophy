@@ -39,6 +39,6 @@ class_name StatCharacter
 #endregion
 
 
-func _init() -> void:
-	SignalBus.debug_print(SignalBus.Debug.STATS_CHARACTER, "Loaded: StatCharacter")
+func _init() -> void:pass
+	#SignalBus.debug_print(SignalBus.Debug.STATS_CHARACTER, "Loaded: StatCharacter")
 	

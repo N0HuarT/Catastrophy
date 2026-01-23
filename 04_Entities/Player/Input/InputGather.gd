@@ -12,14 +12,10 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	current_input = gather_input(delta)
-	SignalBus.debug_print(
-	SignalBus.Debug.INPUT_GATHER,
-	"Current Input Package:\n" +
-	"  Actions: " + str(current_input.actions) + "\n" +
-	"  Direction: " + str(current_input.input_direction) + "\n" +
-	"  Look Delta: " + str(current_input.look_delta))
-
-	
+	#SignalBus.debug_print(self,"Current Input Package:")
+	SignalBus.debug_print(self,str(current_input.actions),"Actions")
+	SignalBus.debug_print(self,str(current_input.input_direction),"Direction")
+	SignalBus.debug_print(self,str(current_input.look_delta),"Look_Delta")
 func gather_input(_delta:float) -> InputPackage:
 	var actions := [
 		"input_jump",
@@ -32,7 +28,8 @@ func gather_input(_delta:float) -> InputPackage:
 		"input_item2",
 		"input_item3",
 		"input_item4",
-        "input_reload"
+		"input_reload",
+		"input_action"
 	]
 
 	var new_input := InputPackage.new()	

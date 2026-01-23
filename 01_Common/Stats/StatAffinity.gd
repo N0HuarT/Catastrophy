@@ -20,7 +20,7 @@ var affinity_levels := {} # empty dict, will be filled
 
 func _init() -> void:
 	_update_dictionary()
-	SignalBus.debug_print(SignalBus.Debug.STATS_AFFINNITY, "Loaded: StatAffinity")
+	#SignalBus.debug_print(SignalBus.Debug.STATS_AFFINNITY, "Loaded:", "StatAffinity")
 	
 # ===== EXPORTED PROPERTIES =====
 @export_range(1.0, AFFINITY_MAX_LEVEL, AFFINITY_STEPUP)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnvtwcf2rw8on"]
+[gd_scene load_steps=9 format=3 uid="uid://cnvtwcf2rw8on"]
 
 [ext_resource type="Script" uid="uid://cixdpsrugmy2n" path="res://04_Entities/Player/Player.gd" id="1_tc20h"]
-[ext_resource type="Script" uid="uid://qi1fke51mtdu" path="res://04_Entities/Player/Input/InputManager.gd" id="9_7lqj2"]
+[ext_resource type="Script" uid="uid://vvfqw1mjlkpb" path="res://04_Entities/Player/Movement/MovementBase.gd" id="2_d7dqp"]
+[ext_resource type="Script" uid="uid://b6oh6tdf0qqvm" path="res://01_Common/Stats/StatRules.gd" id="3_w7yno"]
+[ext_resource type="Script" uid="uid://qi1fke51mtdu" path="res://04_Entities/Player/Input/InputRouter.gd" id="9_7lqj2"]
 [ext_resource type="Script" uid="uid://ck3tspuevwt34" path="res://04_Entities/Player/Input/InputGather.gd" id="10_mpfn1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c81nm"]
@@ -35,16 +37,18 @@ current = true
 [node name="Control" type="Node" parent="."]
 
 [node name="Movement" type="Node" parent="Control"]
+script = ExtResource("2_d7dqp")
 
 [node name="Camera" type="Node" parent="Control"]
 
 [node name="Status" type="Node" parent="Control"]
+script = ExtResource("3_w7yno")
 
 [node name="Utlity" type="Node" parent="Control"]
 
 [node name="Combat" type="Node" parent="Control"]
 
-[node name="InputManager" type="Node" parent="Control"]
+[node name="InputRouter" type="Node" parent="Control"]
 script = ExtResource("9_7lqj2")
 
 [node name="InputGather" type="Node" parent="Control"]

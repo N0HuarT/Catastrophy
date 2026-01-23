@@ -3,7 +3,13 @@ extends Node
 #enum FRAGMENTS {WRATH,GREED,PRIDE,ENVY,LUST,GLUTTON,SLOTH}
 enum CATA {WRATH,GREED,PRIDE,ENVY,LUST,GLUTTON,SLOTH}
 #enum RESOURCES {ESSENCE,DATA}
-
+enum InputPriority {
+	UI,
+	CUTSCENE,
+	GAMEPLAY,
+	AI
+}
+@export var current_InputMode: InputPriority = InputPriority.GAMEPLAY
 @export_group("Resources")
 @export_subgroup("Currency")
 @export var soul_essence: int = 0
@@ -20,6 +26,8 @@ enum CATA {WRATH,GREED,PRIDE,ENVY,LUST,GLUTTON,SLOTH}
 
 
 const HOLD_THRESHOLD := 0.2
+
+
 #region Utility Skills
 	#region Utility Skill - Slide
 var slide_speed := 18.0

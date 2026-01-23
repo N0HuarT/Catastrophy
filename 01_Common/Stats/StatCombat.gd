@@ -22,5 +22,5 @@ class_name StatCombat
 
 
 
-func _init() -> void:
-	SignalBus.debug_print(SignalBus.Debug.STATS_COMBAT, "Loaded: StatCombat")
+func _init() -> void:pass
+	#SignalBus.debug_print(SignalBus.Debug.STATS_COMBAT, "Loaded: StatCombat")

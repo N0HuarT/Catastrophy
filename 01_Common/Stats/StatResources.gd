@@ -9,8 +9,8 @@ class_name StatResources
 #endregion
 
 
-func _init() -> void:
-	SignalBus.debug_print(SignalBus.Debug.STATS_RESOURCES, "Loaded: StatResources")
+func _init() -> void:pass
+	#SignalBus.debug_print(SignalBus.Debug.STATS_RESOURCES, "Loaded: StatResources")
 	#GameGlobals.soul_essence = 1
 	
 	

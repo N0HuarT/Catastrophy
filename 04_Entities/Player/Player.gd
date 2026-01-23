@@ -14,8 +14,7 @@ class_name Player
 
 #func _process(delta: float) -> void:
 func _ready() -> void:
-	SignalBus.debug_print(SignalBus.Debug.PLAYER, "Loaded:Player")
-	#
+	SignalBus.debug_print(self, "Loaded")
 func _physics_process(_delta: float) -> void:
 	pass
 	
