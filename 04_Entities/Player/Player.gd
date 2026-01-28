@@ -1,16 +1,14 @@
 extends Node3D
 class_name Player
 
-@onready var GameGlobals: GameGlobals
+@onready var GlobalsManager: GlobalsManager
 @onready var body := $CharacterBody3D
-@onready var input_gather := $Control/InputGather as InputGatherer
 @export var combat_stats: StatCombat
 @export var affinity_stats: StatAffinity
 @export var character_stats: StatCharacter
 @export var resources_stats: StatResources
-@export var rules_stats: RulesStatus
-
-
+@onready  var rules_stats: RulesStatusResource
+@onready var input_gather: InputGatherer = $Control/InputGather
 
 #func _process(delta: float) -> void:
 func _ready() -> void:

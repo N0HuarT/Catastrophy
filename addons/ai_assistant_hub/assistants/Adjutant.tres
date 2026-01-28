@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AIAssistantResource" load_steps=4 format=3 uid="uid://dm8rpi8ok38bb"]
+
+[ext_resource type="Resource" uid="uid://c0xq2vafep0gu" path="res://addons/ai_assistant_hub/llm_providers/ollama.tres" id="1_a2q07"]
+[ext_resource type="Script" uid="uid://cdnh6paxrj770" path="res://addons/ai_assistant_hub/quick_prompts/ai_quick_prompt_resource.gd" id="2_cyxqv"]
+[ext_resource type="Script" uid="uid://cq1nxgap3qyj" path="res://addons/ai_assistant_hub/assistants/ai_assistant_resource.gd" id="3_mnm7v"]
+
+[resource]
+script = ExtResource("3_mnm7v")
+type_name = "Adjutant"
+ai_model = "deepseek-r1:latest"
+llm_provider = ExtResource("1_a2q07")

@@ -2,13 +2,16 @@ extends Resource
 class_name StatCharacter
 
 #region Movement
+
+# ===== MOVEMENT =====
 @export_subgroup("Movement")
-@export var movement_speed: float = 300.0
-@export var jump_height: float = 100.0
-@export var acceleration: float = 1500.0
-@export var friction: float = 800.0
-@export var dash_range : float=800.0
-@export var dash_cooldown : float=3.0 #3seconds
+@export var movement_speed: float = 5.0
+@export var movement_ground_acceleration: float = 50.0
+@export var movement_air_acceleration: float = 50.0
+@export var movement_deceleration: float = 350.0   
+@export var movement_friction: float = 800.0
+@export var movement_dash_range : float=800.0
+@export var movement_dash_cooldown : float=3.0 #3seconds
 #endregion
 
 #region Base Dmg Stat

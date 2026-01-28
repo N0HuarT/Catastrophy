@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnvtwcf2rw8on"]
+[gd_scene format=3 uid="uid://cnvtwcf2rw8on"]
 
 [ext_resource type="Script" uid="uid://cixdpsrugmy2n" path="res://04_Entities/Player/Player.gd" id="1_tc20h"]
 [ext_resource type="Script" uid="uid://vvfqw1mjlkpb" path="res://04_Entities/Player/Movement/MovementBase.gd" id="2_d7dqp"]
-[ext_resource type="Script" uid="uid://b6oh6tdf0qqvm" path="res://01_Common/Stats/StatRules.gd" id="3_w7yno"]
+[ext_resource type="Script" uid="uid://ci3rkq0b1d7ly" path="res://01_Common/Stats/StatCharacter.gd" id="3_jg7rd"]
+[ext_resource type="Script" uid="uid://dh8ljh4oyaldq" path="res://04_Entities/Player/Movement/MovementRules/Jump.gd" id="4_jg7rd"]
 [ext_resource type="Script" uid="uid://qi1fke51mtdu" path="res://04_Entities/Player/Input/InputRouter.gd" id="9_7lqj2"]
 [ext_resource type="Script" uid="uid://ck3tspuevwt34" path="res://04_Entities/Player/Input/InputGather.gd" id="10_mpfn1"]
 
@@ -12,48 +13,58 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nue64"]
 
-[node name="Player" type="Node3D"]
+[sub_resource type="Resource" id="Resource_v216m"]
+script = ExtResource("3_jg7rd")
+metadata/_custom_type_script = "uid://ci3rkq0b1d7ly"
+
+[node name="Player" type="Node3D" unique_id=1392461342]
 script = ExtResource("1_tc20h")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1939595772]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9500253, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=987885250]
 shape = SubResource("CapsuleShape3D_c81nm")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1058064457]
 mesh = SubResource("CapsuleMesh_rvryl")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D"]
+[node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D" unique_id=2068802672]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 shape = SubResource("SphereShape3D_nue64")
 spring_length = 5.0
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/SpringArm3D"]
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/SpringArm3D" unique_id=461033361]
 current = true
 
-[node name="Audio" type="Node" parent="."]
+[node name="Audio" type="Node" parent="." unique_id=1414343036]
 
-[node name="Control" type="Node" parent="."]
+[node name="Control" type="Node" parent="." unique_id=1726618423]
 
-[node name="Movement" type="Node" parent="Control"]
+[node name="Movement" type="Node" parent="Control" unique_id=1960969627 node_paths=PackedStringArray("character_body_3d")]
 script = ExtResource("2_d7dqp")
+stat_character = SubResource("Resource_v216m")
+character_body_3d = NodePath("../../CharacterBody3D")
 
-[node name="Camera" type="Node" parent="Control"]
+[node name="JumpComponent" type="Node" parent="Control/Movement" unique_id=1820474272]
+unique_name_in_owner = true
+script = ExtResource("4_jg7rd")
 
-[node name="Status" type="Node" parent="Control"]
-script = ExtResource("3_w7yno")
+[node name="Camera" type="Node" parent="Control" unique_id=1903365386]
 
-[node name="Utlity" type="Node" parent="Control"]
+[node name="Status" type="Node" parent="Control" unique_id=1962259098]
 
-[node name="Combat" type="Node" parent="Control"]
+[node name="Utlity" type="Node" parent="Control" unique_id=538531518]
 
-[node name="InputRouter" type="Node" parent="Control"]
+[node name="Combat" type="Node" parent="Control" unique_id=1573618925]
+
+[node name="InputRouter" type="Node" parent="Control" unique_id=439469521]
 script = ExtResource("9_7lqj2")
 
-[node name="InputGather" type="Node" parent="Control"]
+[node name="StateController" type="Node" parent="Control" unique_id=1033205801]
+
+[node name="InputGather" type="Node" parent="Control" unique_id=233726909]
 script = ExtResource("10_mpfn1")
 
-[node name="StateController" type="Node" parent="Control"]
-
-[node name="Inventory" type="Node" parent="."]
+[node name="Inventory" type="Node" parent="." unique_id=112832835]

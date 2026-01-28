@@ -1,5 +1,5 @@
-extends Node
-class_name RulesStatus
+extends Resource
+class_name RulesStatusResource
 
 
 func _init() -> void:
@@ -7,12 +7,11 @@ func _init() -> void:
 	run_Status_debug()
 
 #region Debug
-func run_Status_debug() -> void:
-	pass
+func run_Status_debug() -> void:pass
 	#add_status(RulesStatus.STATUSES.SLOW, 0.5, 3.0)
 	#add_status(RulesStatus.STATUSES.SLOW, 0.3, 3.0)
 	#add_status(RulesStatus.STATUSES.STUNNED, 1.0, 2.0)
-	#add_status(RulesStatus.STATUSES.STUNNED, 1.0, 5.0)
+	#add_status(STATUSES.STUNNED, 1.0, 5.0)
 #endregion
 
 var character_status: Dictionary = {} # enum -> Array of {value, timer}
@@ -40,7 +39,7 @@ func get_slow_multiplier() -> float:
 		var stacks: Array = character_status[STATUSES.SLOW]
 		var multiplier: float = 1.0
 		for i in range(stacks.size()):
-			multiplier *= (1.0 - stacks[i]["value"] * GameGlobals.slow_diminish ** i) # diminishing return
+			multiplier *= (1.0 - stacks[i]["value"] * GlobalsManager.slow_diminish ** i) # diminishing return
 		return multiplier
 	return 1.0
 

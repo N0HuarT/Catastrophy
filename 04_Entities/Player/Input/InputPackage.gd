@@ -1,7 +1,7 @@
 # InputPackage.gd
 extends Resource
 class_name InputPackage
-enum ActionState { TAP, HOLD, RELEASE }
+enum ActionState { PRESSED, HELD, RELEASED }
 
 var actions:= {} #name of the action eg: attack,utility,reload,spell1
 var input_direction: Vector2 = Vector2.ZERO #keyboard Control
