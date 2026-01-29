@@ -29,6 +29,7 @@ var gravity := 15.0 #gravity
 var jump_height := 3.5 #meters
 var fall_multiplier:=2#increase fall speed
 var jump_force :float
+var slow_diminish: float = 0.5
 
 #@export_group("Movement", "move_")
 #@export var move_speed_walk := 3.0
@@ -52,29 +53,19 @@ var jump_force :float
 @export var fragment_gluttony: int = 0
 @export var fragment_sloth: int = 0
 #region
+
 #region
 @export var max_hover_time := 0.5
 @export var max_hover_force := 5.0
 @export var hover_accel := 20.0
 @export var max_air_jumps := 1
-
-
 #endregion
 #region Utility Skills
-	#region Slide
-var slide_speed := 18.0
-var slide_duration := 0.3
+var speed := 18.0
+var location := 0.3
 var slide_distance :=10.0
 var slide_cooldown :=1.5
 	#endregion
-	#region Dash
-var slow_diminish: float = 0.5
-@export var dash_speed := 25.0
-@export var dash_duration := 0.3
-@export var dash_distance := 10.0
-@export var dash_cooldown := 1.0
-	#endregion Dash
-#endregion
 #endregion Utility 
 
 func _init() -> void:
