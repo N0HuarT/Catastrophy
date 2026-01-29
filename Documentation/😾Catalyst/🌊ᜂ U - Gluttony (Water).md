@@ -1,0 +1,17 @@
+**Fantasy:** endless consumption, growing through excess
+- **Primary Gain**
+    - **Health pickups are 50% more effective** (e.g., a small health kit heals 150% of its base).
+    - Dealing damage grants a stacking **Overcharge** buff (max 10 stacks), increasing ability radius and duration by 3% per stack.
+- **Secondary Effects**
+    - At 5+ Overcharge stacks, abilities **leech 5% of damage dealt as health**.
+    - At 10 Overcharge stacks, abilities create a **Devouring Vortex** that pulls enemies toward the impact point.
+    - Using an ability at full energy grants a **Glutton's Feast** shield equal to 10% of your max health for 5 seconds.
+- **Distortion / Penalty (Stress-Driven)**
+    - **Stress** builds each time you heal, use an ability, or reach max Overcharge stacks.
+    - At **Medium Stress**: Overcharge stacks decay 50% faster.
+    - At **High Stress**: Overhealing causes **Bloating** — you move 20% slower and ability energy costs increase by 25%.
+    - At **Max Stress**: **Indigestion** — you lose all Overcharge stacks, become stunned for 1.5 seconds, and vomit a damaging pool that harms you and allies; cannot re-attune to Gluttony for 30 seconds.
+- **Stress Reduction**
+    - Going 8 seconds without healing or using abilities.
+    - Using a basic attack (no energy cost).
+    - Switching away from Gluttony.

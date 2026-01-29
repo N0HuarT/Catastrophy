@@ -1,0 +1,19 @@
+**Fantasy:** flawless execution, rewarded precision
+- **Primary Gain**
+    - **Critical hits** deal +50% extra damage.
+    - Critical Chance +10%.
+    - Headshots and weak point hits always crit while Pride is active.
+    - Precision kills grant a stack of **Prideful Momentum** (max 5 stacks).
+- **Secondary Effects**
+    - Each stack of **Prideful Momentum** increases **reload speed and handling** by 5%.
+    - At 5 stacks, your next shot/ability **over-penetrates** and chains to one additional target.
+    - Taking no damage for 5 seconds grants **Perfect Focus** — your next hit is guaranteed to crit.
+- **Distortion / Penalty (Stress-Driven)**
+    - **Stress** builds each time you miss a shot or take damage.
+    - At **Medium Stress**: Lose all **Prideful Momentum** stacks on taking damage.
+    - At **High Stress**: Enemies gain **20% damage resistance against your critical hits**.
+    - At **Max Stress**: **Ego Shatter** — you are stunned for 2 seconds and lose all buffs; cannot re-attune to Pride for 30 seconds.
+- **Stress Reduction**
+    - Landing critical hits or precision kills.
+    - Switching away from Pride.
+    - Going 5 seconds without missing or taking damage.

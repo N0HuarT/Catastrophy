@@ -1,0 +1,17 @@
+**Fantasy:** Master of control through patience — slow down enemies, speed up your readiness.
+- **Primary Gain**
+    - **All ability cooldowns recharge 20% faster**.
+    - Enemies you damage are **Chilled** (slowed by 25% for 3 seconds).        
+- **Secondary Effects**
+    - Chilled enemies take **+15% damage** from your next hit.
+    - **Freezing** an enemy (through any source) reduces your currently recharging cooldowns by 1 second.
+    - Not using any abilities for 4 seconds grants **Passive Focus** — your next ability cast has 30% increased effect/range/duration.
+- **Distortion / Penalty (Stress-Driven)**
+    - **Stress** builds each time you use an ability within 2 seconds of another ability (haste).
+    - At **Medium Stress**: Cooldown recharge bonus halved.
+    - At **High Stress**: Chilled enemies move 50% slower but you are also slowed by 15%.
+    - At **Max Stress**: **Apathy Lock** — all abilities are disabled for 4 seconds; cannot re-attune to Sloth for 30 seconds.
+- **Stress Reduction**
+    - Letting an ability fully recharge without using it.
+    - Freezing an enemy.
+    - Switching away from Sloth.

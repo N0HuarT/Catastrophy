@@ -1,0 +1,2 @@
+Deals Fire [[💀 Damage Over Time|Damage Over Time]] ([[💀 Damage Over Time|DoT]]). Stacks up to 3 times. Each stack increases DoT damage and duration.  
+**OverHeat** – After 3 Burn stacks, target _[[OverHeats]]_, taking burst damage and spreading Burn.[[😾Mechanics]]

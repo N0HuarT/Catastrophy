@@ -1,0 +1,2 @@
+- **Tap:** **Blind Dart** – Quick shot that applies Poison and Blinds briefly. 
+- **Hold:** **Toxin Field** – Lay down a poison zone that lingers and shreds armor of enemies inside.

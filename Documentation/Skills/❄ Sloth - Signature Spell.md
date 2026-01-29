@@ -1,0 +1,2 @@
+- **Tap:** **Frost Lance** – Quick piercing chill shot.
+- **Hold:** **Blizzard** – Creates a moving cold aura around you that slows and applies Frostbite to nearby enemies. Move to reposition the zone.

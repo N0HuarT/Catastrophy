@@ -1,0 +1,1 @@
+Briefly [[✨Stun|Stun]] and interrupts enemy actions. Duration scales with [[❗Crit Mechanics|Pierce]] stat.

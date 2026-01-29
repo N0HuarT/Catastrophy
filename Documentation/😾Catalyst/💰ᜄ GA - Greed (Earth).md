@@ -1,0 +1,18 @@
+**Fantasy:** hoarding wealth, efficiency at a cost
+- **Primary Gain**
+    - **Pickup Radius** greatly increased.
+    - All ammo/currency pickups grant **+15% bonus** (e.g., 10 bullets become 11–12).
+    - Enemies drop **extra loot** (additional ammo, crafting scraps, or currency).
+- **Secondary Effects**
+    - **Weapon efficiency** improved: 25% chance not to consume ammo on hit.
+    - Reloading is 20% faster.
+    - **Accumulation Shield**: Picking up loot grants a small stacking shield (decays after 5 seconds of no pickups).
+- **Distortion / Penalty (Stress-Driven)**
+    - **Stress** builds each time you pick up loot, gain ammo, or collect currency.
+    - At **Medium Stress**: Your **movement speed slows by 10%** (weighed down by greed).
+    - At **High Stress**: Enemies are **magnetically drawn to dropped loot** near you, gaining temporary buffs if they reach it first.
+    - At **Max Stress**: **Hoarding Backlash** — you drop 30% of your carried ammo/currency on the ground, and cannot re-attune to Greed for 30 seconds.
+- **Stress Reduction**
+    - Spending resources (buying, crafting, using consumables).
+    - Going 10 seconds without picking anything up.
+    - Switching away from Greed.

@@ -1,0 +1,2 @@
+- **Tap:** **Geyser** – Place a quick water burst that knocks up enemies and blocks projectiles briefly.
+- **Hold:** **Tsunami** – Charge and release a large water wave that pushes enemies back and converts damage into overshields.

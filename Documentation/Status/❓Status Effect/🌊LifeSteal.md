@@ -1,0 +1,1 @@
+Heals you for a % of [[Damage]] dealt to [[Exposed|exposed cores]] only.
