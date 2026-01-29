@@ -2,19 +2,20 @@ extends Node
 class_name InputRouter
 
 @onready var player: Player = $"../.."
-@onready var movement_base: MovementBase
-
+@onready var character_controller: CharacterController
 
 var _mouse_look_delta: Vector2 = Vector2.ZERO
+
 func _ready() -> void:
-	movement_base =  $"../Movement" 
+	character_controller = $"../CharacterController"
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_mouse_look_delta += event.relative
+		
 func _process(delta: float) -> void:
-	#if player.input_gather.current_input == null: returnd
 	var current_input := player.input_gather.current_input
-	movement_base.PlayerStateMachine(current_input,delta)
+	character_controller.PlayerStateMachine(current_input,delta)
 	# Always update the input package look delta
 	current_input.look_delta = _mouse_look_delta
 	_mouse_look_delta = Vector2.ZERO  # reset after applying
@@ -30,7 +31,7 @@ func _process(delta: float) -> void:
 					break
 		GlobalsManager.current.InputPriority.GAMEPLAY:
 			#pass
-			movement_base.PlayerStateMachine(current_input, delta)
+			character_controller.PlayerStateMachine(current_input, delta)
 		GameGlobals.InputPriority.AI:
 			# AI input handled elsewhere
 			pass

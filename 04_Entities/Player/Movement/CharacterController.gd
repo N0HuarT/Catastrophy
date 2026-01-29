@@ -1,5 +1,5 @@
 extends Node
-class_name MovementBase
+class_name CharacterController
 
 
 var status: RulesStatusResource = RulesStatusResource.new()

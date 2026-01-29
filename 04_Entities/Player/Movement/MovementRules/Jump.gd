@@ -3,12 +3,12 @@ class_name JumpAbility
 
 @onready var body: CharacterBody3D = %CharacterBody3D
 
-@export var max_hover_time := 0.5
-@export var max_hover_force := 5.0
-@export var hover_accel := 20.0
-@export var max_air_jumps := 1
+#@export var max_hover_time := 0.5
+#@export var max_hover_force := 5.0
+#@export var hover_accel := 20.0
+#@export var max_air_jumps := 1
 
-var air_jump_count := 0
+@export var air_jump_count := 0
 var hover_elapsed := 0.0
 
 var is_hovering := false
@@ -23,12 +23,12 @@ func _physics_process(delta: float) -> void:
 	elif is_hovering:
 		hover_elapsed += delta
 
-		if hover_elapsed >= max_hover_time:
+		if hover_elapsed >= GlobalsManager.current.max_hover_time:
 			stop_hover()
 		else:
 			current_hover_boost = min(
-				current_hover_boost + hover_accel * delta,
-				max_hover_force
+				current_hover_boost + GlobalsManager.current.hover_accel * delta,
+				GlobalsManager.current.max_hover_force
 			)
 
 
@@ -58,7 +58,7 @@ func can_jump() -> bool:
 	if body.is_on_floor():
 		return true
 
-	return air_jump_count < max_air_jumps
+	return air_jump_count < GlobalsManager.current.max_air_jumps
 
 func handle_jump_input(mode: String) -> void:
 	match mode:
@@ -68,7 +68,6 @@ func handle_jump_input(mode: String) -> void:
 				has_left_ground = true
 				can_hover = true
 				air_jump_count = 0
-
 			elif air_jump_count == 0:
 				air_jump_count += 1
 				body.velocity.y = GlobalsManager.current.jump_force * 3

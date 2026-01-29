@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cnvtwcf2rw8on"]
 
 [ext_resource type="Script" uid="uid://cixdpsrugmy2n" path="res://04_Entities/Player/Player.gd" id="1_tc20h"]
-[ext_resource type="Script" uid="uid://vvfqw1mjlkpb" path="res://04_Entities/Player/Movement/MovementBase.gd" id="2_d7dqp"]
+[ext_resource type="Script" uid="uid://vvfqw1mjlkpb" path="res://04_Entities/Player/Movement/CharacterController.gd" id="2_d7dqp"]
 [ext_resource type="Script" uid="uid://ci3rkq0b1d7ly" path="res://01_Common/Stats/StatCharacter.gd" id="3_jg7rd"]
 [ext_resource type="Script" uid="uid://dh8ljh4oyaldq" path="res://04_Entities/Player/Movement/MovementRules/Jump.gd" id="4_jg7rd"]
 [ext_resource type="Script" uid="uid://qi1fke51mtdu" path="res://04_Entities/Player/Input/InputRouter.gd" id="9_7lqj2"]
@@ -42,14 +42,18 @@ current = true
 
 [node name="Control" type="Node" parent="." unique_id=1726618423]
 
-[node name="Movement" type="Node" parent="Control" unique_id=1960969627 node_paths=PackedStringArray("character_body_3d")]
+[node name="CharacterController" type="Node" parent="Control" unique_id=1960969627 node_paths=PackedStringArray("character_body_3d")]
 script = ExtResource("2_d7dqp")
 stat_character = SubResource("Resource_v216m")
 character_body_3d = NodePath("../../CharacterBody3D")
 
-[node name="JumpComponent" type="Node" parent="Control/Movement" unique_id=1820474272]
+[node name="JumpComponent" type="Node" parent="Control/CharacterController" unique_id=1820474272]
 unique_name_in_owner = true
 script = ExtResource("4_jg7rd")
+
+[node name="UtilitySkills" type="Node" parent="Control/CharacterController" unique_id=1964070828]
+
+[node name="Dash" type="Node" parent="Control/CharacterController/UtilitySkills" unique_id=1076337037]
 
 [node name="Camera" type="Node" parent="Control" unique_id=1903365386]
 
