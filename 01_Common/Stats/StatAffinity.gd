@@ -16,7 +16,7 @@ var _aff_lust := 1.0
 var _aff_gluttony := 1.0
 var _aff_sloth := 1.0
 # ===== DICTIONARY =====
-var affinity_levels := {} # empty dict, will be filled
+var affinity_levels := {} # empty dicttionary, will be filled
 
 func _init() -> void:
 	_update_dictionary()

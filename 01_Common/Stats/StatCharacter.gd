@@ -5,7 +5,7 @@ class_name StatCharacter
 
 # ===== MOVEMENT =====
 @export_subgroup("Movement")
-@export var movement_speed: float = 5.0
+@export var movement_speed: float = 15.0
 @export var movement_ground_acceleration: float = 50.0
 @export var movement_air_acceleration: float = 50.0
 @export var movement_deceleration: float = 350.0   

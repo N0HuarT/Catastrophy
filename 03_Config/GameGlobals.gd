@@ -25,11 +25,20 @@ const COMBAT_ACTIONS := [
     "input_action"
 ]
 const HOLD_THRESHOLD := 0.1 #how long before a Hold Execute
-var gravity := 15.0 #gravity
-var jump_height := 3.5 #meters
-var fall_multiplier:=2#increase fall speed
-var jump_force :float
+
 var slow_diminish: float = 0.5
+
+
+#region
+@export var max_hover_time := 0.5
+@export var max_hover_force := 5.0
+@export var hover_accel := 20.0
+@export var max_air_jumps := 1
+var gravity := 45.0 #gravity
+var jump_height := 3 #meters
+var fall_multiplier:=2.5#increase fall speed
+var jump_force :float
+#endregion
 
 #@export_group("Movement", "move_")
 #@export var move_speed_walk := 3.0
@@ -54,14 +63,8 @@ var slow_diminish: float = 0.5
 @export var fragment_sloth: int = 0
 #region
 
-#region
-@export var max_hover_time := 0.5
-@export var max_hover_force := 5.0
-@export var hover_accel := 20.0
-@export var max_air_jumps := 1
-#endregion
 #region Utility Skills
-var speed := 18.0
+var speed := 30.0
 var location := 0.3
 var slide_distance :=10.0
 var slide_cooldown :=1.5

@@ -12,6 +12,8 @@ class_name Player
 
 #func _process(delta: float) -> void:
 func _ready() -> void:
+	if GlobalsManager == null: return
+	GlobalsManager.current.current_InputMode = GlobalsManager.current.InputPriority.GAMEPLAY
 	SignalBus.debug_print(self, "Loaded")
 func _physics_process(_delta: float) -> void:
 	pass

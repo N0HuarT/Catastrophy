@@ -4,12 +4,15 @@
 [ext_resource type="Script" uid="uid://vvfqw1mjlkpb" path="res://04_Entities/Player/Movement/CharacterController.gd" id="2_d7dqp"]
 [ext_resource type="Script" uid="uid://ci3rkq0b1d7ly" path="res://01_Common/Stats/StatCharacter.gd" id="3_jg7rd"]
 [ext_resource type="Script" uid="uid://dh8ljh4oyaldq" path="res://04_Entities/Player/Movement/MovementRules/Jump.gd" id="4_jg7rd"]
+[ext_resource type="PackedScene" uid="uid://rl744rsocl5i" path="res://01_Common/armor.tscn" id="7_v216m"]
+[ext_resource type="PackedScene" uid="uid://dpk0bewwsdgc7" path="res://01_Common/health.tscn" id="8_tc20h"]
 [ext_resource type="Script" uid="uid://qi1fke51mtdu" path="res://04_Entities/Player/Input/InputRouter.gd" id="9_7lqj2"]
+[ext_resource type="PackedScene" uid="uid://ci7rfnnk0hyl7" path="res://01_Common/weapon.tscn" id="9_idu0s"]
 [ext_resource type="Script" uid="uid://ck3tspuevwt34" path="res://04_Entities/Player/Input/InputGather.gd" id="10_mpfn1"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c81nm"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v216m"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_rvryl"]
+[sub_resource type="BoxMesh" id="BoxMesh_tc20h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nue64"]
 
@@ -25,10 +28,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9500253, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=987885250]
-shape = SubResource("CapsuleShape3D_c81nm")
+shape = SubResource("CapsuleShape3D_v216m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1058064457]
-mesh = SubResource("CapsuleMesh_rvryl")
+mesh = SubResource("BoxMesh_tc20h")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D" unique_id=2068802672]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -42,9 +45,10 @@ current = true
 
 [node name="Control" type="Node" parent="." unique_id=1726618423]
 
-[node name="CharacterController" type="Node" parent="Control" unique_id=1960969627 node_paths=PackedStringArray("character_body_3d")]
+[node name="CharacterController" type="Node" parent="Control" unique_id=1960969627 node_paths=PackedStringArray("spring_arm_3d", "character_body_3d")]
 script = ExtResource("2_d7dqp")
 stat_character = SubResource("Resource_v216m")
+spring_arm_3d = NodePath("../../CharacterBody3D/SpringArm3D")
 character_body_3d = NodePath("../../CharacterBody3D")
 
 [node name="JumpComponent" type="Node" parent="Control/CharacterController" unique_id=1820474272]
@@ -80,3 +84,9 @@ script = ExtResource("9_7lqj2")
 script = ExtResource("10_mpfn1")
 
 [node name="Inventory" type="Node" parent="." unique_id=112832835]
+
+[node name="Armor" parent="." unique_id=446766974 instance=ExtResource("7_v216m")]
+
+[node name="Health" parent="." unique_id=214202874 instance=ExtResource("8_tc20h")]
+
+[node name="Weapon" parent="." unique_id=87553290 instance=ExtResource("9_idu0s")]

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://rl744rsocl5i"]
+
+[ext_resource type="Script" uid="uid://bjpsubqti666c" path="res://01_Common/armor.gd" id="1_v1yr1"]
+
+[node name="Armor" type="Node" unique_id=446766974]
+script = ExtResource("1_v1yr1")

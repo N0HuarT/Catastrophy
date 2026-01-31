@@ -5,9 +5,10 @@ class_name CharacterController
 var status: RulesStatusResource = RulesStatusResource.new()
 
 @export var stat_character: StatCharacter
+@export var spring_arm_3d: SpringArm3D
 @export var character_body_3d: CharacterBody3D
 #var jump_component: JumpScript
-var action_intents: Array[ActionIntent] = []
+var action_intents: Array[ActionIntent] = [] 
 
 @onready var jump_component: JumpAbility = %JumpComponent
 
@@ -16,14 +17,13 @@ class ActionIntent:
 	var name: String
 	var mode: String
 	var priority: int
-	
 	func _to_string() -> String:
 		return "%s [%s] (prio=%d)" % [name, mode, priority]
 
 func _ready() -> void:pass
 	#jump_component =JumpScript.new()
 	#print("jump is null? ", jump_component == null)
-	#assert(status != null)
+	#assert(status != null) 
 
 enum ACTION_PRIORITY {
 	MOVEMENT = 10,
@@ -100,64 +100,69 @@ func PlayerMove(direction: Vector2, delta: float) -> void:
 	var accel_ground := stat_character.movement_ground_acceleration
 	var accel_air := stat_character.movement_air_acceleration
 	var decel := stat_character.movement_deceleration
-
-	var desired := Vector3(direction.x, 0, direction.y) * speed
-	var has_input := direction.length() > 0.001
 	var on_floor := character_body_3d.is_on_floor()
 
-	if has_input:
-		var current_accel := accel_ground if on_floor else accel_air
-		character_body_3d.velocity.x = move_toward(
-			character_body_3d.velocity.x,
-			desired.x,
-			current_accel * delta
-		)
-		character_body_3d.velocity.z = move_toward(
-			character_body_3d.velocity.z,
-			desired.z,
-			current_accel * delta
-		)
+	# Apply deadzone
+	if direction.length() < SettingsManager.current.input_deadzone:
+		direction = Vector2.ZERO
 
+	if direction != Vector2.ZERO:
+		# Character local axes
+		var _move_dir := (character_body_3d.transform.basis.z * direction.y +
+						 character_body_3d.transform.basis.x * direction.x).normalized()
+		var _desired_velocity := _move_dir * speed
+		var _accel := accel_ground if on_floor else accel_air
+		character_body_3d.velocity.x = move_toward(character_body_3d.velocity.x, _desired_velocity.x, _accel * delta)
+		character_body_3d.velocity.z = move_toward(character_body_3d.velocity.z, _desired_velocity.z, _accel * delta)
 	elif on_floor:
-		# Only decelerate when grounded
-		character_body_3d.velocity.x = move_toward(
-			character_body_3d.velocity.x,
-			0.0,
-			decel * delta
-		)
-		character_body_3d.velocity.z = move_toward(
-			character_body_3d.velocity.z,
-			0.0,
-			decel * delta
-		)
+		# Decelerate when grounded and no input
+		character_body_3d.velocity.x = move_toward(character_body_3d.velocity.x, 0.0, decel * delta)
+		character_body_3d.velocity.z = move_toward(character_body_3d.velocity.z, 0.0, decel * delta)
 
-func PlayerLook(_look: Vector2, _delta: float) -> void: pass
-# TODO: apply camera rotation or look logic
+func PlayerLook(_look: Vector2, _delta: float) -> void:
+	if _look.length() < SettingsManager.current.input_deadzone:return
+	# ----------------------------
+	# Horizontal Look (Yaw ←→)
+	# ----------------------------
+	var _yaw :float= -_look.x * SettingsManager.current.horizontal_mouse_sensitivity
+	character_body_3d.rotate_y(_yaw)
+	# ----------------------------
+	# Vertical Look (Pitch ↑↓)
+	# ----------------------------
+	var pitch :float= -_look.y * SettingsManager.current.vertical_mouse_sensitivity
+	var min_pitch :float= deg_to_rad(SettingsManager.current.vertical_min)
+	var max_pitch :float= deg_to_rad(SettingsManager.current.vertical_max)
+	spring_arm_3d.rotation.x = clamp(
+		spring_arm_3d.rotation.x + pitch,
+		min_pitch,
+		max_pitch
+	)
+
 
 
 func ResolveActionInput(actions: Dictionary, _delta: float) -> void:#pass
 
 	for action_name:String in actions.keys():
 		if action_name not in GlobalsManager.current.COMBAT_ACTIONS:continue		
-		var intent := ActionIntent.new()
-		intent.name = action_name
-		intent.priority  = get_action_priority(action_name) 
+		var _intent := ActionIntent.new()
+		_intent.name = action_name
+		_intent.priority  = get_action_priority(action_name) 
 
 		match actions[action_name]:
-			InputPackage.ActionState.PRESSED:		
-				intent.mode = "PRESSED"
+			InputPackage.ActionState.PRESSED:
+				_intent.mode = "PRESSED"
 				#pressed took like 2-3 frame to be considered help 
 				#i dont know if this a correct approach
 				actions[action_name] = InputPackage.ActionState.HELD
 			InputPackage.ActionState.HELD:
-				intent.mode = "HELD"
+				_intent.mode = "HELD"
 			InputPackage.ActionState.RELEASED:
-				intent.mode = "RELEASED"
+				_intent.mode = "RELEASED"
 				#cleaningcrew, just to free some RAM XD
 				actions.erase(action_name)
 				
 		#-------------------------------		
-		action_intents.append(intent)
+		action_intents.append(_intent)
 			
 func ResolveActionIntents() -> void:
 	if action_intents.is_empty():return
@@ -167,16 +172,13 @@ func ResolveActionIntents() -> void:
 	)
 	# Pick the top priority action to execute
 	for i in range(action_intents.size()):
-		var chosen_intent := action_intents[i]
-		if ActionVerify(chosen_intent):
-			ActionExecute(chosen_intent)
+		var _chosen_intent := action_intents[i]
+		if ActionVerify(_chosen_intent):
+			ActionExecute(_chosen_intent)
 			break
 			#return
 	action_intents.clear()
-
-
-
-
+	
 func ActionVerify(intent: ActionIntent) -> bool:
 	#SignalBus.debug_print(self, intent.to_string(), "Executed -> Action")
 	match intent.name:

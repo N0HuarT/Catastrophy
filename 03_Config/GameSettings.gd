@@ -1,9 +1,6 @@
 # GameSettings.gd
 extends Resource
 class_name GameSettings
-
-
-
 # ===== CAMERA =====
 @export_group("Camera")
 
