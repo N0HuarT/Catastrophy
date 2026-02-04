@@ -30,13 +30,18 @@ var slow_diminish: float = 0.5
 
 
 #region
+#movement
+@export var movement_ground_acceleration: float = 50.0
+@export var movement_air_acceleration: float = 50.0
+@export var movement_deceleration: float = 350.0 
+#Jump
 @export var max_hover_time := 0.5
 @export var max_hover_force := 5.0
 @export var hover_accel := 20.0
 @export var max_air_jumps := 1
-var gravity := 45.0 #gravity
-var jump_height := 3 #meters
-var fall_multiplier:=2.5#increase fall speed
+var gravity := 9.8 #gravity
+var jump_height := 2.5 #meters
+var fall_multiplier:=5.0   #increase fall speed
 var jump_force :float
 #endregion
 

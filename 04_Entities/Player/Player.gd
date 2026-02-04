@@ -1,8 +1,8 @@
-extends Node3D
+extends Node
 class_name Player
 
 @onready var GlobalsManager: GlobalsManager
-@onready var body := $CharacterBody3D
+
 @export var combat_stats: StatCombat
 @export var affinity_stats: StatAffinity
 @export var character_stats: StatCharacter

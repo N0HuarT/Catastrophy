@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ccq1b463v7ug2"]
+
+[ext_resource type="Texture2D" uid="uid://oywsq08ibbcy" path="res://05_Stages/terrain/cobblestone_pavement_diff_4k.jpg" id="1_wns4m"]
+
+[resource]
+albedo_texture = ExtResource("1_wns4m")
+uv2_triplanar = true

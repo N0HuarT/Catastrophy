@@ -1,86 +1,100 @@
 [gd_scene format=3 uid="uid://cnvtwcf2rw8on"]
 
 [ext_resource type="Script" uid="uid://cixdpsrugmy2n" path="res://04_Entities/Player/Player.gd" id="1_tc20h"]
+[ext_resource type="Script" uid="uid://di5c0kamrwbh" path="res://01_Common/Stats/StatCombat.gd" id="2_8aa62"]
 [ext_resource type="Script" uid="uid://vvfqw1mjlkpb" path="res://04_Entities/Player/Movement/CharacterController.gd" id="2_d7dqp"]
 [ext_resource type="Script" uid="uid://ci3rkq0b1d7ly" path="res://01_Common/Stats/StatCharacter.gd" id="3_jg7rd"]
-[ext_resource type="Script" uid="uid://dh8ljh4oyaldq" path="res://04_Entities/Player/Movement/MovementRules/Jump.gd" id="4_jg7rd"]
+[ext_resource type="Script" uid="uid://du8lvx1l7x2qj" path="res://01_Common/Stats/StatAffinity.gd" id="3_shhcd"]
+[ext_resource type="Script" uid="uid://cveil7062o28o" path="res://01_Common/Stats/StatResources.gd" id="5_qyct7"]
+[ext_resource type="Shader" uid="uid://bhblw8pjv5xyf" path="res://01_Common/Shader/mobiousShader.gdshader" id="6_shhcd"]
 [ext_resource type="PackedScene" uid="uid://rl744rsocl5i" path="res://01_Common/armor.tscn" id="7_v216m"]
 [ext_resource type="PackedScene" uid="uid://dpk0bewwsdgc7" path="res://01_Common/health.tscn" id="8_tc20h"]
 [ext_resource type="Script" uid="uid://qi1fke51mtdu" path="res://04_Entities/Player/Input/InputRouter.gd" id="9_7lqj2"]
 [ext_resource type="PackedScene" uid="uid://ci7rfnnk0hyl7" path="res://01_Common/weapon.tscn" id="9_idu0s"]
 [ext_resource type="Script" uid="uid://ck3tspuevwt34" path="res://04_Entities/Player/Input/InputGather.gd" id="10_mpfn1"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v216m"]
+[sub_resource type="Resource" id="Resource_1dybp"]
+script = ExtResource("2_8aa62")
+metadata/_custom_type_script = "uid://di5c0kamrwbh"
 
-[sub_resource type="BoxMesh" id="BoxMesh_tc20h"]
+[sub_resource type="Resource" id="Resource_cl7ga"]
+script = ExtResource("3_shhcd")
+metadata/_custom_type_script = "uid://du8lvx1l7x2qj"
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_nue64"]
-
-[sub_resource type="Resource" id="Resource_v216m"]
+[sub_resource type="Resource" id="Resource_ir105"]
 script = ExtResource("3_jg7rd")
 metadata/_custom_type_script = "uid://ci3rkq0b1d7ly"
 
-[node name="Player" type="Node3D" unique_id=1392461342]
+[sub_resource type="Resource" id="Resource_7lqj2"]
+script = ExtResource("5_qyct7")
+metadata/_custom_type_script = "uid://cveil7062o28o"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v216m"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8aa62"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nue64"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_shhcd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qyct7"]
+render_priority = 0
+shader = ExtResource("6_shhcd")
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+shader_parameter/edge_threshold = 0.01
+shader_parameter/noise_frequency = 10.0
+shader_parameter/noise_offset_intensity = 0.002
+
+[node name="Player" type="Node3D" unique_id=1433687675]
 script = ExtResource("1_tc20h")
+combat_stats = SubResource("Resource_1dybp")
+affinity_stats = SubResource("Resource_cl7ga")
+character_stats = SubResource("Resource_ir105")
+resources_stats = SubResource("Resource_7lqj2")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1939595772]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9500253, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=987885250]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 1.4210855e-14)
 shape = SubResource("CapsuleShape3D_v216m")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1058064457]
-mesh = SubResource("BoxMesh_tc20h")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/CollisionShape3D" unique_id=1058064457]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 2.3841856e-07)
+mesh = SubResource("CapsuleMesh_8aa62")
+skeleton = NodePath("../..")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D" unique_id=2068802672]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+unique_name_in_owner = true
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.6346388, 2.4290228)
 shape = SubResource("SphereShape3D_nue64")
 spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/SpringArm3D" unique_id=461033361]
 current = true
 
+[node name="Filter" type="MeshInstance3D" parent="CharacterBody3D/SpringArm3D/Camera3D" unique_id=566649017]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -0.00848037, 1.1920929e-07, -0.48675418)
+visible = false
+transparency = 0.9
+mesh = SubResource("QuadMesh_shhcd")
+surface_material_override/0 = SubResource("ShaderMaterial_qyct7")
+
 [node name="Audio" type="Node" parent="." unique_id=1414343036]
 
 [node name="Control" type="Node" parent="." unique_id=1726618423]
 
-[node name="CharacterController" type="Node" parent="Control" unique_id=1960969627 node_paths=PackedStringArray("spring_arm_3d", "character_body_3d")]
-script = ExtResource("2_d7dqp")
-stat_character = SubResource("Resource_v216m")
-spring_arm_3d = NodePath("../../CharacterBody3D/SpringArm3D")
-character_body_3d = NodePath("../../CharacterBody3D")
-
-[node name="JumpComponent" type="Node" parent="Control/CharacterController" unique_id=1820474272]
+[node name="CharacterController" type="Node" parent="Control" unique_id=1960969627]
 unique_name_in_owner = true
-script = ExtResource("4_jg7rd")
-
-[node name="UtilitySkills" type="Node" parent="Control/CharacterController" unique_id=1964070828]
-
-[node name="Dash" type="Node" parent="Control/CharacterController/UtilitySkills" unique_id=1076337037]
-
-[node name="Hook" type="Node" parent="Control/CharacterController/UtilitySkills" unique_id=1165137307]
-
-[node name="Node2" type="Node" parent="Control/CharacterController/UtilitySkills" unique_id=677534552]
-
-[node name="Node3" type="Node" parent="Control/CharacterController/UtilitySkills" unique_id=1565070864]
-
-[node name="Node4" type="Node" parent="Control/CharacterController/UtilitySkills" unique_id=1203111887]
-
-[node name="Camera" type="Node" parent="Control" unique_id=1903365386]
-
-[node name="Status" type="Node" parent="Control" unique_id=1962259098]
-
-[node name="Utlity" type="Node" parent="Control" unique_id=538531518]
-
-[node name="Combat" type="Node" parent="Control" unique_id=1573618925]
+script = ExtResource("2_d7dqp")
 
 [node name="InputRouter" type="Node" parent="Control" unique_id=439469521]
+unique_name_in_owner = true
 script = ExtResource("9_7lqj2")
 
-[node name="StateController" type="Node" parent="Control" unique_id=1033205801]
-
 [node name="InputGather" type="Node" parent="Control" unique_id=233726909]
+unique_name_in_owner = true
 script = ExtResource("10_mpfn1")
 
 [node name="Inventory" type="Node" parent="." unique_id=112832835]

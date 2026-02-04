@@ -5,13 +5,7 @@ class_name StatCharacter
 
 # ===== MOVEMENT =====
 @export_subgroup("Movement")
-@export var movement_speed: float = 15.0
-@export var movement_ground_acceleration: float = 50.0
-@export var movement_air_acceleration: float = 50.0
-@export var movement_deceleration: float = 350.0   
-@export var movement_friction: float = 800.0
-@export var movement_dash_range : float=800.0
-@export var movement_dash_cooldown : float=3.0 #3seconds
+@export var movement_speed: float = 6.0  
 #endregion
 
 #region Base Dmg Stat

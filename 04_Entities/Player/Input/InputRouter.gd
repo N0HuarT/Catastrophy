@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 					
 		GlobalsManager.current.InputPriority.GAMEPLAY:
 			#Input.MOUSE_MODE_VISIBLE 
-			character_controller.PlayerStateMachine(_current_input, delta)
+			character_controller.player_state_machine(_current_input, delta)
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		GameGlobals.InputPriority.AI:
 			# AI input handled elsewhere

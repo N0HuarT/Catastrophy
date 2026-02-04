@@ -37,7 +37,7 @@ window/size/extend_to_title=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/ai_assistant_hub/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
 
 [input]
 
@@ -192,3 +192,4 @@ ai_assistant_hub/preferences/always_scroll_to_bottom=false
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method.mobile="forward_plus"

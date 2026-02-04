@@ -6,7 +6,7 @@ var _mouse_look_delta: Vector2 = Vector2.ZERO
 var  current_input: InputPackage
 
 func _ready() -> void:
-	#if current_input == null: 
+	#if current_input == null: aa ddddw
 	current_input = InputPackage.new()
 	
 func _input(event: InputEvent) -> void:

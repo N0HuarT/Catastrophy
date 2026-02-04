@@ -1,27 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://dm8eceor2xe2"]
+[gd_scene format=3 uid="uid://dm8eceor2xe2"]
 
-[ext_resource type="Texture2D" uid="uid://oywsq08ibbcy" path="res://05_Stages/terrain/cobblestone_pavement_diff_4k.jpg" id="1_j177w"]
 [ext_resource type="PackedScene" uid="uid://cnvtwcf2rw8on" path="res://04_Entities/Player/Player.tscn" id="1_nm8f6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ak37q"]
-albedo_texture = ExtResource("1_j177w")
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a8xgu"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+energy_multiplier = 1.7
 
-[node name="Debug" type="Node"]
+[sub_resource type="Sky" id="Sky_j177w"]
+sky_material = SubResource("ProceduralSkyMaterial_a8xgu")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0, 0)
-material_override = SubResource("StandardMaterial3D_ak37q")
+[sub_resource type="Environment" id="Environment_ak37q"]
+background_mode = 2
+sky = SubResource("Sky_j177w")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_a8xgu"]
+albedo_color = Color(0.51703596, 0.64052784, 0.94405144, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8xgu"]
+
+[node name="Debug" type="Node" unique_id=328208197]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=725686107]
+environment = SubResource("Environment_ak37q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=749339821]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1396189816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2821655, 0.49272156, -0.54782104)
+material_override = SubResource("ORMMaterial3D_a8xgu")
+cast_shadow = 0
 use_collision = true
 size = Vector3(500, 1, 500)
+material = SubResource("StandardMaterial3D_a8xgu")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 115.52356, 0)
-light_energy = 1.4
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D" unique_id=1085116891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8406029, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=950707998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 115.52356, 0)
+top_level = true
 light_color = Color(0.5192641, 0.5805383, 0.96917003, 1)
-light_energy = 1.205
+light_energy = 12.311
+light_indirect_energy = 1.18
+shadow_enabled = true
+omni_range = 5.075
 
-[node name="Player" parent="." instance=ExtResource("1_nm8f6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="Player" parent="." unique_id=1851402645 instance=ExtResource("1_nm8f6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1076112, 0)
